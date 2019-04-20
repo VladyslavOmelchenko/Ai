@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="synaptic.js"></script>
+
+</head>
+<body>
+        <!--натверное надоело читать однотипый код и ты хочешь выйти и поиграть в пс(все знают что пс лучше чем икс бокс) но у тебя нету времени потому что надо работать поэтому на вот крестики нолики это подбодрит тебя кстати надо было сделать на нейронке но мне лень шучу я уже это сделал-->
+        <style>
+            td{border: 10mm; border-color: black; background-color: black;
+            }
+            span{color: white;}
+            </style>
+            <table><!--почему не юузанул бутстрап потому что это олд скул кстати музычка?-->
+                    <tr>
+                      <td onclick="x(1)" id='1'>--</td>
+                      <td onclick="x(2)" id='2'>--</td>
+                      <td onclick="x(3)" id='3'>--</td>
+                    </tr>
+                    <tr>
+                      <td onclick="x(4)" id='4'>--</td>
+                      <td onclick="x(5)" id='5'>--</td>
+                      <td onclick="x(6)" id='6'>--</td>
+                    </tr>
+                    <tr>
+                      <td onclick="x(7)" id='7'>--</td>
+                      <td onclick="x(8)" id='8'>--</td>
+                      <td onclick="x(9)" id='9'>--</td>
+                    </tr>
+            </table>
+            <div id="button" onclick="zero_click()"> zero</div>
+            <div id="label1"> zero</div>
+            <div id="label2"> zero</div>
+            <div id="label3"> zero</div>
+            <div id="label4"> zero</div>
+            <button onclick="start()">Start</button>
+            <script type="text/javascript">
+              var a=0,b=0,c=0;
+              var index=.001;
+              var arr=       [0,0,0,
+                              0,0,0,
+                              0,0,0];
+             // var arr_memory=[0,0,0,
+                              // 0,0,0,
+                              // 0,0,0];
+              let com=0;
+              let com_1=0;
+              function zero_click(){
+                
+              arr=            [0,0,0,
+                               0,0,0,
+                               0,0,0];
+              arr_max=        [0,0,0,
+                               0,0,0,
+                               0,0,0];  
+              for (let i=0; i<10; i++) 
+                {     
+               
+                   $("#"+i).html("--");
+                 }
+              }
+            function zero(){
+              // if (a=>50){
+              //     a=0;b=0;c=0;
+              //   }
+
+              arr=            [0,0,0,
+                               0,0,0,
+                               0,0,0];
+              arr_max=        [0,0,0,
+                               0,0,0,
+                               0,0,0];  
+              for (let i=0; i<10; i++) 
+                {     
+               
+                   $("#"+i).html("--");
+                 }
+                 return 0;
+            }
+            function x(td_name)
+            {////////////////////////////////////////
+               
+                 if( arr[ parseInt( td_name ) - 1 ]==0 )
+                 {                                  
+                  const { Layer, Network }    = window.synaptic;
+                  var           inputLayer    = new Layer(9);
+                  var           hiddenLayer1  = new Layer(27);
+                  var           hiddenLayer2  = new Layer(27);
+                  var           hiddenLayer3  = new Layer(9);
+                  var           hiddenLayer4  = new Layer(27);
+                  var           hiddenLayer5  = new Layer(27);
+                  var           hiddenLayer6  = new Layer(27);
+                  var           hiddenLayer7  = new Layer(27);
+                  var           hiddenLayer8  = new Layer(9);
+                  var           hiddenLayer9  = new Layer(9);
+                  var           outputLayer   = new Layer(9);
+                  
+                    inputLayer.project(hiddenLayer1);
+                    hiddenLayer1.project(hiddenLayer2);
+                    hiddenLayer2.project(hiddenLayer3);
+                    hiddenLayer3.project(hiddenLayer4);
+                    hiddenLayer4.project(hiddenLayer5);
+                    hiddenLayer5.project(hiddenLayer6);
+                    hiddenLayer6.project(hiddenLayer7);
+                    hiddenLayer7.project(hiddenLayer8);
+                    hiddenLayer8.project(hiddenLayer9);
+                    hiddenLayer9.project(outputLayer);
+                    //hiddenLayer9.project(outputLayer);
+                    // inputLayer.project(hiddenLayer1);
+                   
+                    // hiddenLayer1.project(outputLayer);
+        
+                  var myNetwork = new Network({
+                    input: inputLayer,
+                    hidden: [hiddenLayer1,hiddenLayer2,hiddenLayer3,hiddenLayer4,hiddenLayer5,hiddenLayer6,hiddenLayer7,hiddenLayer8],
+                    // hidden: [hiddenLayer1],
+                    output: outputLayer
+                                              });
+                 
+                                              console.log(com_1);
+                 if(com_1==0)
+                  {
+                   td_name=0;
+                  com_1=1;
+                  }
+                 else
+                  {
+                   console.log(com_1+"2");
+                   arr[parseInt(td_name)-1]=1;
+                   $("#"+(parseInt(td_name))).html("<span>X</span>");
+                   }
+
+                   var arr_net;
+                    // switch (parseInt(td_name))
+                    // {
+                    //   case(0):arr_net=myNetwork.activate(   [0 , 0 , 0 , 0]   );   break;
+                    //   case(1):arr_net=myNetwork.activate(   [0 , 0 , 0 , 1]   );   break;
+                    //   case(2):arr_net=myNetwork.activate(   [0 , 0 , 1 , 0]   );   break;
+                    //   case(3):arr_net=myNetwork.activate(   [0 , 0 , 1 , 1]   );   break;
+                    //   case(4):arr_net=myNetwork.activate(   [0 , 1 , 0 , 0]   );   break;
+                    //   case(5):arr_net=myNetwork.activate(   [0 , 1 , 0 , 1]   );   break;
+                    //   case(6):arr_net=myNetwork.activate(   [0 , 1 , 1 , 0]   );   break;
+                    //   case(7):arr_net=myNetwork.activate(   [0 , 1 , 1 , 1]   );   break;
+                    //   case(8):arr_net=myNetwork.activate(   [1 , 0 , 0 , 0]   );   break;
+                    //   case(9):arr_net=myNetwork.activate(   [1 , 0 , 0 , 1]   );   break;
+                    // }
+                    arr_net=myNetwork.activate(   arr   );
+                 var max=1, i_max=-1;
+                  for(let i in arr_net)
+                  {
+                    if(max>arr_net[i] && arr[i]==0)
+                    {
+                        max=arr_net[i];
+                        i_max=i;
+                    }
+                  }
+                      //arr_memory[i_max]=1;
+                
+
+                  console.log(com_1);
+                  if (
+                  (         (arr[0]==1 && arr[1]==1 && arr[2]==1 )
+                          ||
+                            (arr[0]==-1 && arr[1]==-1 && arr[2]==-1 )//
+                  )||
+                  (         (arr[3]==1 && arr[4]==1 && arr[5]==1 )
+                            ||
+                            (arr[3]==-1 && arr[4]==-1 && arr[5]==-1 )//
+                  )||
+                  (         (arr[6]==1 && arr[7]==1 && arr[8]==1 )
+                            ||
+                            (arr[6]==-1 && arr[7]==2 && arr[8]==-1 )//
+                  )||
+                  (         (arr[0]==1 && arr[3]==1 && arr[6]==1 )
+                            ||
+                            (arr[0]==-1 && arr[3]==-1 && arr[6]==-1 )//
+                  )||
+                  (         (arr[1]==1 && arr[4]==1 && arr[7]==1 )
+                            ||
+                            (arr[1]==-1 && arr[4]==-1 && arr[7]==-1 )//
+                  )||
+                  (         (arr[2]==1 && arr[5]==1 && arr[8]==1 )
+                            ||
+                            (arr[2]==-1 && arr[5]==-1 && arr[8]==-1 )//
+                  )||
+                  (         (arr[0]==1 && arr[4]==1 && arr[8]==1 )
+                            ||
+                            (arr[0]==-1 && arr[4]==-1 && arr[8]==-1 )//
+                  )||
+                  (         (arr[2]==1 && arr[4]==1 && arr[6]==1 )
+                            ||
+                            (arr[2]==-1 && arr[4]==-1 && arr[6]==-1 )//
+                  )
+                ){
+                  if (
+                    (arr[2]==-1 && arr[4]==-1 && arr[6]==-1) 
+                    ||
+                    (arr[0]==-1 && arr[4]==-1 && arr[8]==-1)
+                    ||
+                    (arr[2]==-1 && arr[5]==-1 && arr[8]==-1)
+                    ||
+                    (arr[1]==-1 && arr[4]==-1 && arr[7]==-1)
+                    ||
+                    (arr[0]==-1 && arr[3]==-1 && arr[6]==-1)
+                    ||
+                    (arr[6]==-1 && arr[7]==-1 && arr[8]==-1)
+                    ||
+                    (arr[3]==-1 && arr[4]==-1 && arr[5]==-1)
+                    ||
+                    (arr[0]==-1 && arr[1]==-1 && arr[2]==-1)
+                    ){
+                 // console.log("+"+(a++));
+                  a++;
+                 // for(let i in arr_memory)
+                    {
+                      //f(arr_memory[i]==1)
+                      {
+                        learn(arr, index*100);
+                        com_1=zero();//break;
+                        
+                      }
+                      
+                    }
+                  }
+                  else
+                  {
+                    //console.log("-"+(b++));
+                    b++;
+                  //  for(let i in arr_memory)
+                    {
+                      //if(arr_memory[i]==1)
+                      {
+                        learn(arr, -index*2);
+                        com_1=zero();//break;
+                        
+                      }
+                    }
+                  }
+                  }
+                  else
+                  {
+
+                   let q=parseInt(i_max)+1;
+                      arr[q-1]=-1;
+                  $("#"+q).html("<span>0</span>");
+                  
+                  }
+                              if (a>100){
+                  a=0;b=0;c=0;
+                }
+                function learn(td_name, index){
+                // switch (parseInt(td_name)){
+                //       case(0):arr_net=myNetwork.propagate(index,  [0  , 0 , 0 , 0]   );   break;
+                //       case(1):arr_net=myNetwork.propagate(index,  [0  , 0 , 0 , 1]   );   break;
+                //       case(2):arr_net=myNetwork.propagate(index,  [0  , 0 , 1 , 0]   );   break;
+                //       case(3):arr_net=myNetwork.propagate(index,  [0  , 0 , 1 , 1]   );   break;
+                //       case(4):arr_net=myNetwork.propagate(index,  [0  , 1 , 0 , 0]   );   break;
+                //       case(5):arr_net=myNetwork.propagate(index,  [0  , 1 , 0 , 1]   );   break;
+                //       case(6):arr_net=myNetwork.propagate(index,  [0  , 1 , 1 , 0]   );   break;
+                //       case(7):arr_net=myNetwork.propagate(index,  [0  , 1 , 1 , 1]   );   break;
+                //       case(8):arr_net=myNetwork.propagate(index,  [1  , 0 , 0 , 0]   );   break;
+                //       case(9):arr_net=myNetwork.propagate(index,  [1  , 0 , 0 , 1]   );   break;
+                //      }
+                arr_net=myNetwork.propagate(index,  td_name   ); 
+                     }
+                for (let i=0; i<10; i++)
+                 {
+                        if(arr[i]!=0)
+                        {
+                            com++;
+                        }
+                 }      
+                if (com>=9)
+                {
+                  //console.log("0"+(c++));
+                  c++;
+                    //for(let i in arr_memory)
+                    {
+                      //if(arr_memory[i]==1)
+                      {
+                        learn(arr,-index*0.1);
+                      }
+                    }
+                    com_1=zero();
+                }
+                 com=0;
+                 let g=a/(a+b+c)*100;
+               $("#label1").html(g+"%");
+               $("#label2").html("a="+a);
+               $("#label3").html("b="+b);
+               $("#label4").html("c="+c);
+              }
+              
+            }
+               // }///////////////////////////////////////////////
+               
+            </script>
+            <script>
+              var j=0;
+           // for(var i=0; i<100000;i++)
+              
+              setInterval(function() {
+              if(j==0)
+                {     
+                var q=Math.floor(Math.random() * 9) + 1;
+                 x(q);
+                 
+                 }
+                }, 1);
+                
+            
+            function start()
+            {
+              if (j==0){j=1;}
+              else{j=0;}
+              
+            }          
+            </script>
+</body>
+</html>
